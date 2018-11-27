@@ -4,6 +4,7 @@ for file in $(find . -maxdepth 1 -name ".*" -type f  -printf "%f\n" ); do
         mv -f ~/$file{,.dtbak}
     fi
     ln -s $PWD/$file ~/$file
+    ln -s $PWD/.bash ~/.bash
 done
  if hash vim-addon  2>/dev/null; then
          echo "vim-addon (vim-scripts)  installed"
