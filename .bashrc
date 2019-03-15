@@ -129,3 +129,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Added Path for Snap package Command Line Tools
+PATH=$PATH:/snap/bin
