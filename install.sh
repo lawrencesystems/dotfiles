@@ -7,6 +7,7 @@ for file in $(find . -maxdepth 1 -name ".*" -type f  -printf "%f\n" ); do
         mv -f ~/$file{,.dtbak}
     fi
     ln -s $PWD/$file ~/$file
+    ln -s $PWD/.bash ~/.bash
 done
 
 # Check if vim-addon installed, if not, install it automatically
