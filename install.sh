@@ -9,12 +9,22 @@ for file in $(find . -maxdepth 1 -name ".*" -type f  -printf "%f\n" ); do
     ln -s $PWD/$file ~/$file
 done
 
-# Check if vim-addon installed, if not, install it automatically
-if hash vim-addon  2>/dev/null; then
-    echo "vim-addon (vim-scripts)  installed"
-else
-    echo "vim-addon (vim-scripts) not installed, installing"
+# Check if vim-scripts installed, if not, install it automatically
+
+if ! dpkg-query -W -f='${Status}' vim-scripts | grep "ok installed"; then
+    echo "vim-scripts not installed, installing"
     sudo apt update && sudo apt -y install vim-scripts
+else
+    echo "vim-scripts already installed"
 fi
 
-echo "Installed"
+# Check if NERDTree installed, if not, install it automatically
+
+if [ ! -d ~/.vim/pack/vendor/start/nerdtree ]; then
+    echo "NERDTree not installed, installing"
+    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+    vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+else
+    echo "NERDTree already installed"
+fi
+echo "Installation Complete"
