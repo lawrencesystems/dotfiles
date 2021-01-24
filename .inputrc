@@ -1,0 +1,15 @@
+# Start typing than press up / down arrow to autocomplete command from history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Complete things that have been typed in the wrong case:
+set completion-ignore-case on
+
+# When listing possible file completions, put / after  directory names and * after programs:
+set visible-stats on
+
+# List the possible completions when Tab is pressed:
+set show-all-if-ambiguous on
+
+# Make Meta+S cycle through the list:
+"\M-s": menu-complete
