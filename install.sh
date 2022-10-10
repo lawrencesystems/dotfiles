@@ -18,4 +18,7 @@ else
     sudo apt update && sudo apt -y install vim-scripts
 fi
 
+# Apply the changes and update the shell with the config files
+exec bash
+
 echo "Installed"
