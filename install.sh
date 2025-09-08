@@ -13,6 +13,9 @@ done
     echo "installing extras"
     sudo apt update && sudo apt -y install vim-scripts zsh zsh-syntax-highlighting zsh-autosuggestions
 
+# Apply the changes and update the shell with the config files
+exec bash
+
 echo "Installed"
 echo "use chsh -s /bin/zsh to switch to ZSH shell"
 
