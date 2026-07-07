@@ -12,14 +12,15 @@ man() {
 
 
 whatsgoingon() {
-    for i in $(find . -maxdepth 1 -type d | sed -e 's/\.\///' -e '/\./d'); do
-        pushd $i >/dev/null
-        echo "$(tput bold)$i$(tput sgr0)"
+    # Use find -print0 with null-terminated strings to safely handle special characters in directory names
+    while IFS= read -r -d '' dir; do
+        pushd "$dir" >/dev/null || continue
+        echo "$(tput bold)$(basename "$dir")$(tput sgr0)"
         if [ -z "$(git status --porcelain)" ]; then
             echo "is clean"
         else
             git status -s
         fi
         popd >/dev/null
-    done
+    done < <(find . -maxdepth 1 -type d ! -name ".", -print0)
 }

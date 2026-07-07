@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Exit on error, undefined variables, and pipe failures
+set -u
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
